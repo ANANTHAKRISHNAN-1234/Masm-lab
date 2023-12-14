@@ -1,0 +1,98 @@
+𝗩𝗢𝗪𝗘𝗟 𝗔𝗟𝗚𝗢
+--------------
+1. **Data Segment:**
+   - Define a message MSG1 to prompt the user to enter a string.
+   - Define a message MSG2 to display the number of vowels.
+   - Create an array VOWEL to store the vowels to be checked in the input string.
+   - Create a buffer DATABUF to store the user-input string.
+
+2. **Code Segment:**
+   - Initialize the DS register with the starting address of the data segment.
+   - Display MSG1 to prompt the user to enter a string.
+   - Read the string from the user into DATABUF.
+   - Point SI to the beginning of the input string.
+   - Display MSG2 to indicate that the program will output the number of vowels.
+
+3. **Vowel Counting Loop:**
+   - Initialize BL (vowel count) to 0.
+   - Iterate over each character in the input string:
+     - Load the current character into AL.
+     - Iterate over the characters in the VOWEL array:
+       - Compare AL with the current vowel.
+       - If they match, increment BL (vowel count) and exit the loop.
+     - Continue to the next character in the input string.
+   - Display the vowel count.
+
+4. **Exit:**
+   - Terminate the program.
+
+
+𝗣𝗔𝗟𝗜𝗡𝗗𝗥𝗢𝗠𝗘 𝗔𝗟𝗚𝗢
+-------------------
+1. **Data Segment:**
+   - Define a message MSG1 to prompt the user to enter a string.
+   - Define a message MSG2 to indicate that the string is a palindrome.
+   - Define a message MSG3 to indicate that the string is not a palindrome.
+   - Create a character array STR1 with a maximum length of 50 to store the input string.
+
+2. **Code Segment:**
+   - Initialize the DS register with the starting address of the data segment.
+   - Display MSG1 to prompt the user to enter a string.
+   - Initialize SI and DI to point to the beginning of STR1.
+   - Use INT 21H, AH=01H to read characters from the user until the Enter key (0DH) is pressed.
+   - Check if the entered character is the Enter key. If yes, terminate the string with '$'.
+   - Repeat the process until the Enter key is encountered.
+
+3. **Palindrome Checking:**
+   - Start with a loop to compare characters from both ends of STR1.
+   - Decrement DI and compare the character at SI with the character at DI.
+   - If the characters don't match, jump to the NOTPALINDROME section.
+   - Increment SI and continue the loop until SI is less than DI.
+
+4. **Palindrome Output:**
+   - If the loop completes without jumping to NOTPALINDROME, it's a palindrome.
+   - Display MSG2 to indicate that the string is a palindrome and jump to EXIT.
+
+5. **Not Palindrome Output:**
+   - If the loop jumps to NOTPALINDROME, it's not a palindrome.
+   - Display MSG3 to indicate that the string is not a palindrome.
+
+6. **Exit:**
+   - Terminate the program.
+
+𝗟𝗜𝗡𝗘𝗔𝗥 𝗔𝗟𝗚𝗢
+---------------
+1. **Data Segment:**
+   - Define a message MSG1 to prompt the user to enter a string.
+   - Define a message MSG2 to prompt the user to enter a key.
+   - Define a message MSG3 to indicate that the key is found.
+   - Define a message MSG4 to indicate that the key is not found.
+   - Create a buffer N to store the entered string.
+
+2. **Code Segment:**
+   - Initialize the DS register with the starting address of the data segment.
+   - Set up SI to point to the buffer N.
+   - Display MSG1 to prompt the user to enter a string.
+   - Use INT 21H, AH=01H to read characters from the user until the Enter key (0DH) is pressed.
+   - Check if the entered character is the Enter key. If yes, jump to the next step.
+   - Repeat the process until the Enter key is encountered.
+
+3. **Enter Key for Key Input:**
+   - Display MSG2 to prompt the user to enter a key.
+   - Use INT 21H, AH=01H to read a single character (the key).
+
+4. **Check Key in Entered String:**
+   - Start a loop to check each character in the entered string (N).
+   - Decrement SI and compare the character at SI with the entered key.
+   - If a match is found, jump to the FOUND section.
+   - Decrement the loop counter (CL) and check if it's zero. If not, repeat the loop.
+   - If the loop completes without finding a match, jump to the NOTFOUND section.
+
+5. **Key Found Output:**
+   - Display MSG3 to indicate that the key is found and jump to the FINISH section.
+
+6. **Key Not Found Output:**
+   - Display MSG4 to indicate that the key is not found.
+
+7. **Finish:**
+   - Terminate the program.
